@@ -30,6 +30,11 @@ const rootReducer = (state = initialState, action) => {
 const store = createStore(rootReducer);
 console.log(store.getState());
 
+// Subscription : Subscription should be created before any dispatch happens
+store.subscribe(() => {
+  console.log("[Subscription]", store.getState());
+});
+
 // Dispatcher
 store.dispatch({ type: "INC_COUNTER" });
 store.dispatch({ type: "ADD_10_TO_COUNTER", value: 10 });
