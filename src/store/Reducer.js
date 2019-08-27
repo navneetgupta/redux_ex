@@ -3,25 +3,38 @@ const initalState = {
 };
 
 const reducer = (state = initalState, action) => {
-  console.log(action.type);
-  let updatedState = { ...state };
+  // console.log(action.type);
+  // let updatedState = { ...state };
+  // switch (action.type) {
+  //   case "INCREMENT":
+  //     updatedState.counter = updatedState.counter + 1;
+  //     break;
+  //   case "DECREMENT":
+  //     updatedState.counter = updatedState.counter - 1;
+  //     break;
+  //   case "ADD":
+  //     updatedState.counter = updatedState.counter + action.value;
+  //     break;
+  //   case "SUB":
+  //     updatedState.counter = updatedState.counter - action.value;
+  //     break;
+  //   default:
+  // }
+  // console.log(updatedState);
+  // return updatedState;
+  //
   switch (action.type) {
     case "INCREMENT":
-      updatedState.counter = updatedState.counter + 1;
-      break;
+      return { counter: state.counter + 1 };
     case "DECREMENT":
-      updatedState.counter = updatedState.counter - 1;
-      break;
+      return { counter: state.counter - 1 };
     case "ADD":
-      updatedState.counter = updatedState.counter + action.value;
-      break;
+      return { counter: state.counter + action.value };
     case "SUB":
-      updatedState.counter = updatedState.counter - action.value;
-      break;
+      return { counter: state.counter - action.value };
     default:
+      return updatedState;
   }
-  console.log(updatedState);
-  return updatedState;
 };
 
 export default reducer;
