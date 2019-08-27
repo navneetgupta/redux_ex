@@ -1,3 +1,5 @@
+import * as actionTypes from "./actions";
+
 const initalState = {
   counter: 0,
   results: [],
@@ -8,19 +10,19 @@ const reducer = (state = initalState, action) => {
   let updatedState = { ...state };
   // let updatedState = Object.assign({}, state);
   switch (action.type) {
-    case "INCREMENT":
+    case actionTypes.INCREMENT:
       updatedState.counter = updatedState.counter + 1;
       break;
-    case "DECREMENT":
+    case actionTypes.DECREMENT:
       updatedState.counter = updatedState.counter - 1;
       break;
-    case "ADD":
+    case actionTypes.ADD:
       updatedState.counter = updatedState.counter + action.value;
       break;
-    case "SUB":
+    case actionTypes.SUBTRACT:
       updatedState.counter = updatedState.counter - action.value;
       break;
-    case "STORE":
+    case actionTypes.STORE_RESULT:
       // push modifies the old array
       // updatedState.results = [...updatedState.results];
       // updatedState.results.push({
@@ -35,7 +37,7 @@ const reducer = (state = initalState, action) => {
       });
       updatedState.id = updatedState.id + 1;
       break;
-    case "DELETE":
+    case actionTypes.DELETE_RESULT:
       // const oldResults = [...updatedState.results];
       // not needed since filter already return new array instead of modyfing old one
       const newResults = updatedState.results.filter(({ result, id }) => {
