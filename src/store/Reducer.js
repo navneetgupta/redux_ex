@@ -36,16 +36,15 @@ const reducer = (state = initalState, action) => {
       updatedState.id = updatedState.id + 1;
       break;
     case "DELETE":
-      const oldResults = [...updatedState.results];
-      const newResults = oldResults.filter(({ result, id }) => {
+      // const oldResults = [...updatedState.results];
+      // not needed since filter already return new array instead of modyfing old one
+      const newResults = updatedState.results.filter(({ result, id }) => {
         return id !== action.id;
       });
       updatedState.results = newResults;
-      console.log(updatedState);
       break;
     default:
   }
-  console.log(updatedState);
   return updatedState;
 
   // switch (action.type) {
