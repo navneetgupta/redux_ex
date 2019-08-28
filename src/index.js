@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import * as serviceWorker from "./serviceWorker";
 import counterReducer from "./store/reducers/counter_reducer";
 import resultsReducer from "./store/reducers/results_reducer";
@@ -23,7 +23,13 @@ const logger = state => {
     };
   };
 };
-const store = createStore(rootReducer, applyMiddleware(logger));
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(logger))
+);
 
 ReactDOM.render(
   <Provider store={store}>
