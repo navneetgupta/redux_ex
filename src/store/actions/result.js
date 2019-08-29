@@ -8,8 +8,11 @@ export const saveResult = result => {
   };
 };
 export const storeResult = res => {
-  return dispatch => {
+  return (dispatch, getState) => {
     setTimeout(() => {
+      // minimize below pattern usage,any params required can be passed as we are passing `res`
+      // const oldCounter = getState().ctr.counter;
+      // console.log(oldCounter);
       dispatch(saveResult(res));
     }, 2000);
   };
