@@ -5,6 +5,15 @@ const initalState = {
   id: 0
 };
 
+const deleteResult = (state, action) => {
+  const result = state.results.filter(({ result, id }) => {
+    return id !== action.id;
+  });
+  return updateObject(state, {
+    results: result
+  });
+};
+
 const results_reducer = (state = initalState, action) => {
   switch (action.type) {
     case actionTypes.STORE_RESULT:
@@ -27,11 +36,7 @@ const results_reducer = (state = initalState, action) => {
       // const oldResults = [...updatedState.results];
       // not needed since filter already return new array instead of modyfing old one
 
-      return updateObject(state, {
-        results: state.results.filter(({ result, id }) => {
-          return id !== action.id;
-        })
-      });
+      return deleteResult(state, action);
     default:
       return state;
   }
