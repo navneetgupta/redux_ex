@@ -1,28 +1,24 @@
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actions/actionTypes";
+import { updateObject } from "../utility";
 
 const initalState = {
   counter: 0
 };
 
 const counter_reducer = (state = initalState, action) => {
-  let updatedState = { ...state };
   // let updatedState = Object.assign({}, state);
   switch (action.type) {
     case actionTypes.INCREMENT:
-      updatedState.counter = updatedState.counter + 1;
-      break;
+      return updateObject(state, { counter: state.counter + 1 });
     case actionTypes.DECREMENT:
-      updatedState.counter = updatedState.counter - 1;
-      break;
+      return updateObject(state, { counter: state.counter - 1 });
     case actionTypes.ADD:
-      updatedState.counter = updatedState.counter + action.value;
-      break;
+      return updateObject(state, { counter: state.counter + action.value });
     case actionTypes.SUBTRACT:
-      updatedState.counter = updatedState.counter - action.value;
-      break;
+      return updateObject(state, { counter: state.counter - action.value });
     default:
+      return state;
   }
-  return updatedState;
 };
 
 export default counter_reducer;
